@@ -1,0 +1,57 @@
+﻿@model EditModel
+@{
+    ViewData["Title"] = "ویرایش سایت";
+}
+<div class="content">
+    <h1 class="text-center bg-warning fw-bold p-1" style="font-family:nazanin;font-size:30px">ویرایش ادمین</h1>
+    <form method="post" class="p-5 border border-2 border-secondary shadow">
+        <div class="container">
+            <div class="row justify-content-center text-end">
+                <div class="col-sm-6 mt-3">
+                    <div class="input-group">
+                        <input asp-for="Title" type="text" class="form-control text-end" placeholder="تایتل سایت" />
+                    </div>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6 mt-3">
+                    <div class="input-group">
+                        <input asp-for="PhoneNumber" type="number" class="form-control text-end" placeholder="شماره همراه" />
+                    </div>
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6 mt-3">
+                    <div class="input-group">
+                        <input asp-for="Email" type="email" class="form-control text-end" placeholder="ایمیل" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <div class="input-group">
+                            <textarea asp-for="Address">
+
+                            </textarea>
+                        </div>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <div class="input-group">
+                            <textarea asp-for="AboutUs">
+
+                            </textarea>
+                        </div>
+                        <span asp-validation-for="AboutUs" class="text-danger"></span>
+                    </div>
+                    <div class="text-center mt-5">
+                        <button id="button" type="submit" class="btn btn-success fw-bold p-2">اعمال تغییرات</button>
+                    </div>
+                </div>
+    </form>
+</div>
+
+
+
+
+
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

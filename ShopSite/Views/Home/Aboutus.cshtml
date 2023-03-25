@@ -1,0 +1,42 @@
+﻿@using ShopSite.Data;
+@inject AppDb _appDb;
+@using System.IO;
+@using System.Text;
+@inject IWebHostEnvironment _webHostEnvironment
+@{
+    string? txtString;
+    var editModel = _appDb.EditModels.SingleOrDefault();
+    string rootPath = _webHostEnvironment.WebRootPath;
+    var filePath = System.IO.Path.Combine(rootPath + "/txt/", "aboutus.txt");
+    using (StreamReader sr = new StreamReader(filePath))
+    {
+        txtString = sr.ReadToEnd();
+    }
+}
+
+@{
+    ViewData["Title"] = "About Us";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/fonts.css" asp-append-version="true" />
+}
+<style>
+    body {
+        background: #161616;
+    }
+    .content{
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        background: rgba(255, 255, 255, 0.05);
+    }
+</style>
+<div class="container mt-5 p-5 text-light">
+    <h1 class="text-muted p-5">@editModel?.Title</h1>
+    <div class="content mt-2 p-5">
+        @foreach (var myString in txtString.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+        {
+            <p>@myString</p>
+        }
+    </div>
+        
+    
+</div>

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Products";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/homeStyle.css" asp-append-version="true" />
+}
+	<div class="container"style="font-family:farnaz">
+        @foreach(var product in Model){
+		<div class="card">
+			<div class="content">
+				<div class="imgBx">
+					<img src="@("~/image/"+ product.PictureName)" asp-append-version="true" width="250px" height="250px" />
+				</div>
+				<div class="contentBx">
+					<h3>@product.Name</h3>
+				</div>
+			</div>
+			<ul class="sci">
+				<div class="li">
+					<button class="btn btn-lg btn-warning">محصولات</button>
+				</div>
+				@if (User.Identity.IsAuthenticated)
+				{
+					<div class="d-inline-flex edit_buttons">
+						<div class="admin">
+							<a asp-controller="Product" asp-action="UpdateProduct" asp-route-id="@product.Id" class="btn btn-lg btn-primary mx-4">ویرایش</a>
+						</div>
+						<div class="admin">
+							<button class="btn btn-lg btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#@product.Name.Replace(" ","")">
+								حذف
+							</button>
+						</div>
+
+					</div>
+				}
+			</ul>
+		</div>
+		<div class="modal fade" id="@product.Name.Replace(" ","")" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						مطمئن هستید؟
+					</div>
+					<div class="modal-footer">
+						<form asp-controller="Product" method="post" asp-action="DeleteProduct">
+							<a class="btn btn-danger" data-bs-dismiss="modal">بستن</a>
+							<input type="hidden" value="@product.Id" name="id" />
+							<button type="submit" class="btn btn-success">حذف</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+        }
+	</div>

@@ -1,0 +1,149 @@
+﻿@using ShopSite.Data;
+@using System.Net;
+@using System.IO;
+@inject AppDb _appDb;
+@inject IWebHostEnvironment _webHostEnvironment
+<!DOCTYPE html>
+<html>
+@{
+    string? txtString;
+    var editModel = _appDb.EditModels.SingleOrDefault();
+    string rootPath = _webHostEnvironment.WebRootPath;
+    var filePath = System.IO.Path.Combine(rootPath + "/txt/", "address.txt");
+    using(StreamReader sr = new StreamReader(filePath))
+    {
+        txtString = await sr.ReadToEndAsync();
+    }
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @editModel?.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ShopSite.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="icon" type="image/x-icon" href=@("~/image/"+ editModel?.IconFileName) asp-append-version="true">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    @await RenderSectionAsync("Styles", required: false)
+    <style>
+        * {
+            font-family: Compset;
+        }
+        a:link {
+            text-decoration:none;
+            color:darkgray;
+        }
+
+        a:hover {
+            text-decoration:none;
+            color: darkgray;
+        }
+
+        a:active {
+            text-decoration: none;
+            color: darkgray;
+        }
+
+        .products {
+            line-height:8px;
+            
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3" style="font-family:farnaz">
+            <div class="container-fluid">
+                <a class="navbar-brand mx-2" asp-area="" asp-controller="Home" asp-action="Index">@editModel?.Title</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <partial name="_Categories" />
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Aboutus">About Us</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-danger text-light mx-2" asp-area="" asp-controller="User" asp-action="LogoutUser">Log out Admin</a>
+                            </li>
+                            <li class="nav-item">
+                                <partial name="_AddButtons" />
+                            </li>
+                        }
+                        else{
+                            <li class="nav-item">
+                            <a class="nav-link btn btn-warning text-dark" asp-area="" asp-controller="Home" asp-action="Login">Enter</a>
+                        </li>
+                        }
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+            <partial name="_Notification" />
+        </main>
+    </div>
+    <div id="contact" class="bg-dark text-light mt-3 p-3">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-sm-4 p-2">
+                    <h1 class="text-muted p-2">Contact Us</h1>
+                    <div class="mt-5" style="font-size: 20px;">
+                        <p style="font-size: 15px;"><i class="h5 bi bi-telephone mx-3"></i>@editModel?.PhoneNumber</p>
+                        <p style="font-size: 15px;"><i class="h5 bi bi-envelope mx-3"></i>@editModel?.Email</p>
+                        <p style="font-size: 15px;"><i class="h5 bi bi-buildings mx-3"></i>@txtString</p>
+
+                    </div>
+
+                </div>
+                <div class="col-sm-4">
+                    <h1 class="text-muted display-4">@editModel?.Title</h1>
+
+                </div>
+                <div class="col-sm-4 mt-1 p-2">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center text-white mt-2 p-2" style="background: #161616">
+        <p>&copy; @DateTime.Now.Year All rights reserved for @editModel?.Title</p>
+    </div>
+    <div class="text-center mt-1 p-2">
+        <a target="_blank" href="@editModel?.TwitterUrl"><i style="color:aliceblue" class="h3 bi bi-twitter mx-1"></i></a>
+        <a target="_blank" href="@editModel?.FacebookUrl"><i style="color:aliceblue" class="h3 bi bi-facebook mx-1"></i></a>
+        <a target="_blank" href="@editModel?.InstagramUrl"><i style="color:aliceblue" class="h3 bi bi-instagram mx-1"></i></a>
+        <a target="_blank" href="@editModel?.LinkedinUrl"><i style="color:aliceblue" class="h3 bi bi-linkedin mx-1"></i></a>
+    </div>
+
+    <footer class="footer text-muted text-center" style="font-size:13px;">
+        <div class="container">
+            <p>Developed by <a href="mailto:aminkhosravi007@gmail.com">Amin web design group</a> at the request of @editModel?.Title</p>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("CustomScript", required: false)
+</body>
+</html>

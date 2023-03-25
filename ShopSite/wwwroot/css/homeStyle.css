@@ -1,0 +1,193 @@
+﻿* {
+    margin:0;
+    padding: 0;
+}
+
+body {
+    background: #161616;
+}
+.edit_buttons {
+    position: absolute;
+    bottom:30px;
+    left:1px;
+    bottom: 50px;
+    top:50px;
+    display: flex;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#DA22FF, #9733EE);
+    clip-path: circle(30% at right 70%);
+}
+
+section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#E55D87, #5FC3E4);
+    clip-path: circle(20% at 10% 10%);
+}
+
+/*.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin:40px 0;
+
+}*/
+
+    .container .card {
+        position: relative;
+        width: 300px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.05);
+        margin-left: 15px;
+        margin-bottom:15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(10px);
+    }
+
+        .container .card .content {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: 0.5s;
+        }
+
+        .container .card:hover .content {
+            transform: translateY(-20px);
+        }
+
+        .container .card .content .imgBx {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+        }
+
+            .container .card .content .imgBx img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .container .card .content .contentBx h3 {
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            font-size: 18px;
+            text-align: center;
+            margin: 20px 0 10px;
+            line-height: 1.1em;
+        }
+
+            .container .card .content .contentBx h3 span {
+                font-size: 12px;
+                font-weight: 300;
+                text-transform: initial;
+            }
+
+        .container .card .sci {
+            position: absolute;
+            left:60px;
+            bottom: 50px;
+            display: flex;
+        }
+
+            .container .card .sci .li {
+                list-style: none;
+                margin: 0 10px;
+                transform: translateY(40px);
+                transition: 0.5s;
+                opacity: 0;
+            }
+
+        .container .card:hover .sci .li {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+
+        .container .card .sci li a {
+            color: #fff;
+            font-size: 20px;
+        }
+@media screen and (max-width: 500px) {
+    .container .card .sci {
+        position: absolute;
+        left: 70px;
+        bottom: 50px;
+        display: flex;
+    }
+}
+@media screen and (max-width: 992px) {
+    .container .card .sci {
+        position: absolute;
+        left: 60px;
+        bottom: 50px;
+        display: flex;
+    }
+}
+@font-face {
+    font-family: 'yekan';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/fonts/pixelboy-BYekan.eot');
+    src: url('/fonts/pixelboy-BYekan.eot?#iefix') format('embedded-opentype'), url('/fonts/pixelboy-BYekan.woff') format('woff'), url('/fonts/pixelboy-BYekan.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'farnaz';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/fonts/pixelboy-BFarnaz.eot');
+    src: url('/fonts/pixelboy-BFarnaz.eot?#iefix') format('embedded-opentype'), url('/fonts/pixelboy-BFarnaz.woff') format('woff'), url('/fonts/pixelboy-BFarnaz.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'nazanin';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/fonts/pixelboy-BNazanin.eot');
+    src: url('/fonts/pixelboy-BNazanin.eot?#iefix') format('embedded-opentype'), url('/fonts/pixelboy-BNazanin.woff') format('woff'), url('/fonts/pixelboy-BNazanin.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'mitra';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/fonts/pixelboy-BMitra.eot');
+    src: url('/fonts/pixelboy-BMitra.eot?#iefix') format('embedded-opentype'), url('/fonts/pixelboy-BMitra.woff') format('woff'), url('/fonts/pixelboy-BMitra.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'jalal';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/fonts/pixelboy-BJalal.eot');
+    src: url('/fonts/pixelboy-BJalal.eot?#iefix') format('embedded-opentype'), url('/fonts/pixelboy-BJalal.woff') format('woff'), url('/fonts/pixelboy-BJalal.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'arshia';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/fonts/pixelboy-Arshia.eot');
+    src: url('/fonts/pixelboy-Arshia.eot?#iefix') format('embedded-opentype'), url('/fonts/pixelboy-Arshia.woff') format('woff'), url('/fonts/pixelboy-Arshia.ttf') format('truetype');
+}

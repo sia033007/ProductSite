@@ -1,0 +1,16 @@
+﻿@using ShopSite.Data;
+@inject AppDb _appDb;
+@{
+    var categotries = _appDb.Categories.ToList();
+
+}
+<div class="dropdown">
+    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Categories
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        @foreach(var category in categotries){
+            <a asp-controller="Product" asp-action="GetAllProductsOfACategory" asp-route-id="@category.Id" asp-route-pageNumber="1" class="dropdown-item text-center">@category.CategoryName</a>
+        }
+    </div>
+</div>

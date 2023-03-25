@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Main Page";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/homeStyle.css" asp-append-version="true" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.7/css/fileinput.min.css" asp-append-version="true" />
+}
+	<div class="container"style="font-family:farnaz;">
+		<div class="row justify-content-center">
+			@foreach(var category in Model){
+		<div class="card col-sm-4 mt-4">
+			<div class="content">
+				<div class="imgBx">
+					<img src="@("~/image/"+ category.PictureName)" asp-append-version="true"  />
+				</div>
+				<div class="contentBx">
+					<h3>@category.CategoryName</h3>
+				</div>
+			</div>
+			<ul class="sci">
+				<div class="li">
+					<a asp-controller="Product" asp-action="GetAllProductsOfACategory" asp-route-id="@category.Id" asp-route-pageNumber="1" class="btn btn-lg btn-warning">Products</a>
+				</div> <br/>
+				@if(User.Identity.IsAuthenticated){
+					<div class="d-inline-flex edit_buttons">
+						<div class="admin">
+								<button class="btn btn-lg btn-primary mx-3" type="button" data-bs-toggle="modal" data-bs-target="#UpdateCategory-@category.Id">
+                                    Edit
+                                </button>
+						</div>
+						<div class="admin">
+								<button class="btn btn-lg btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#DeleteCategory-@category.Id">
+								Delete
+							</button>
+						</div>
+
+					</div>
+				}
+			</ul>
+		</div>
+		<div class="modal fade" id="DeleteCategory-@category.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						Are you sure?
+					</div>
+					<div class="modal-footer">
+						<form asp-controller="Category" method="post" asp-action="DeleteCategory">
+							<a class="btn btn-danger" data-bs-dismiss="modal">Close</a>
+							<input type="hidden" value="@category.Id" name="id" />
+							<button type="submit" class="btn btn-success">Delete</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+			<div class="modal fade" id="UpdateCategory-@category.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Edit Category</h5>
+						</div>
+						<div class="modal-body">
+							<form asp-controller="Category" asp-action="UpdateCategory" method="post" class="p-5 border border-2 border-secondary shadow" enctype="multipart/form-data" id="myForm">
+								<div class="container">
+									<div class="row justify-content-center">
+										<div class="col-sm-9 mt-3">
+											<div class="input-group">
+												<input type="hidden" value="@category.Id" asp-for="@category.Id" />
+											</div>
+										</div>
+										<div class="col-sm-10 mt-3">
+											<div class="input-group">
+												<input asp-for="@category.CategoryName" type="text" class="form-control text-center" placeholder="Category Name" />
+											</div>
+											<span asp-validation-for="@category.CategoryName" class="text-danger"></span>
+										</div>
+										<div class="col-sm-10 mt-3" style="direction:ltr;">
+											<input id="input-b2" asp-for="@category.Picture" accept="image/png" type="file" class="file" data-show-preview="false" data-show-caption="true" data-msg-placeholder="Choose Image">
+
+										</div>
+
+										<br />
+										<div class="text-center mt-3">
+											<button id="button" type="submit" class="btn btn-warning btn-lg p-2">Apply changes</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+        }
+
+		</div>
+        
+	</div>
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.7/js/fileinput.min.js"></script>
+
+    }

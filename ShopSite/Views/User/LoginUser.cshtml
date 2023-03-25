@@ -1,0 +1,50 @@
+﻿@model LoginModel
+@section Styles{
+    <link rel="stylesheet" href="~/css/fonts.css" asp-append-version="true" />
+}
+    @{
+    ViewData["Title"] = "ورود ادمین";
+}
+<div class="content">
+    <h1 class="text-center bg-warning fw-bold p-1" style="font-family:nazanin;font-size:30px">ورود ادمین</h1>
+    <form method="post" class="p-5 border border-2 border-secondary shadow">
+        <div class="container">
+            <div class="row justify-content-center text-end">
+                <div class="col-sm-6 mt-3">
+                    <div class="input-group">
+                        <input asp-for="UserName" type="text" class="form-control text-end" placeholder="نام کاربری" />
+                    </div>
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6 mt-3">
+                    <div class="input-group">
+                        <input asp-for="Password" type="password" class="form-control text-end" placeholder="رمز عبور" />
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="col-sm-6 mt-5">
+                    <label>
+                        <input type="checkbox" name="checkbox" asp-for="RememberMe" />
+                        مرا به خاطر بسپار
+                    </label>
+                </div>
+                <div class="col-sm-6 mt-3">
+                </div><br />
+                <div class="text-center mt-5">
+                <div class="col-sm-6 mt-3">
+                </div>
+                    <button id="button" type="submit" class="btn btn-success fw-bold p-2">ورود</button>
+                </div>
+            </div>
+    </form>
+</div>
+
+
+
+
+
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

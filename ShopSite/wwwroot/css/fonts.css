@@ -1,0 +1,47 @@
+﻿@font-face {
+    font-family: 'yekan';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/fonts/pixelboy-BYekan.eot');
+    src: url('/fonts/pixelboy-BYekan.eot?#iefix') format('embedded-opentype'), url('/fonts/pixelboy-BYekan.woff') format('woff'), url('/fonts/pixelboy-BYekan.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'farnaz';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/fonts/pixelboy-BFarnaz.eot');
+    src: url('/fonts/pixelboy-BFarnaz.eot?#iefix') format('embedded-opentype'), url('/fonts/pixelboy-BFarnaz.woff') format('woff'), url('/fonts/pixelboy-BFarnaz.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'nazanin';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/fonts/pixelboy-BNazanin.eot');
+    src: url('/fonts/pixelboy-BNazanin.eot?#iefix') format('embedded-opentype'), url('/fonts/pixelboy-BNazanin.woff') format('woff'), url('/fonts/pixelboy-BNazanin.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'mitra';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/fonts/pixelboy-BMitra.eot');
+    src: url('/fonts/pixelboy-BMitra.eot?#iefix') format('embedded-opentype'), url('/fonts/pixelboy-BMitra.woff') format('woff'), url('/fonts/pixelboy-BMitra.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'jalal';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/fonts/pixelboy-BJalal.eot');
+    src: url('/fonts/pixelboy-BJalal.eot?#iefix') format('embedded-opentype'), url('/fonts/pixelboy-BJalal.woff') format('woff'), url('/fonts/pixelboy-BJalal.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'arshia';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/fonts/pixelboy-Arshia.eot');
+    src: url('/fonts/pixelboy-Arshia.eot?#iefix') format('embedded-opentype'), url('/fonts/pixelboy-Arshia.woff') format('woff'), url('/fonts/pixelboy-Arshia.ttf') format('truetype');
+}

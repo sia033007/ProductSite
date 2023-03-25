@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Account Confirmation";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/fonts.css" asp-append-version="true" />
+}
+<style>
+        body{
+            background: #161616;
+        }
+        .fiber{
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+</style>
+<h1 class="text-center bg-warning fw-bold p-2" style="font-size:30px">Account Confirmation Status</h1>
+    <div class="p-5 fiber">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col mt-3">
+                   @if(TempData["success"] != null){
+                       <p class="text-light" style="font-family:farnaz;font-size:20px">Account confirmed successfully. You can click on the button below to sign in.</p>
+                   }
+                   else{
+                       <p class="text-light" style="font-size:20px">Something unexpected happened. Please try to sign up again through the button below.</p>
+                   }
+                </div>
+                <br />
+            <div class="text-center mt-3">
+                <a asp-controller="User" asp-action="EnterAdmin" id="button" class="btn btn-warning fw-bold p-2" style="font-family:farnaz">Click here</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        //window.setTimeout(function () {
+        //    window.location.href = '/User/EnterAdmin%25%25123ReturnTrue%25%25123';
+        //}, 4000);
+    </script>

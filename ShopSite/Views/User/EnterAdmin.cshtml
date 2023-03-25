@@ -1,0 +1,134 @@
+﻿@using Newtonsoft;
+@{
+	ViewData["Title"] = "Enter Admin";
+}
+@{
+	var registerModel = new RegisterModel();
+	var loginModel = new LoginModel();
+	var forgotPasswordViewModel = new ForgotPasswordViewModel();
+	if (TempData["NotFoundUser"] is string s)
+	{
+		loginModel = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginModel>(s);
+    }
+	else if (TempData["NotConfirmedEmail"] is string n)
+	{
+		loginModel = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginModel>(n);
+	}
+	else if (TempData["WrongPassword"] is string b)
+	{
+		loginModel = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginModel>(b);
+	}
+	else if (TempData["RegisterFailed"] is string r)
+	{
+		registerModel = Newtonsoft.Json.JsonConvert.DeserializeObject<RegisterModel>(r);
+	}
+}
+@section Styles{
+	<link rel="stylesheet" href="~/css/enterAdmin.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/fonts.css" asp-append-version="true" />
+	
+}
+<div class="container">
+	<div class="row justify-content-center">
+			<div class="col-sm-8 login-wrap">
+				<div class="login-html">
+					<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign in</label>
+					<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign up</label>
+					<div class="login-form">
+						<form asp-controller="User" asp-action="LoginUser" method="post">
+							<div class="sign-in-htm">
+								<div class="group">
+									<input asp-for="@loginModel.UserName" placeholder="User name" id="user" type="text" class="input">
+								</div>
+								<span class="text-danger" asp-validation-for="@loginModel.UserName"></span>
+								<div class="group mt-2">
+									<input asp-for="@loginModel.Password" placeholder="Password" id="pass" type="password" class="input" data-type="password">
+								</div>
+								<span class="text-danger" asp-validation-for="@loginModel.Password"></span>
+								<div class="group mt-2">
+									<input asp-for="@loginModel.RememberMe" id="check" type="checkbox" class="check" checked>
+									<label for="check"><span class="icon"></span> Remember me</label>
+								</div>
+								<div class="group">
+									<input type="submit" class="button" value="Sign in">
+								</div>
+								<div class="hr"></div>
+								<div class="foot-lnk">
+									<button class="fw-bold btn btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#modal">
+										Forgot Password
+									</button>
+								</div>
+							</div>
+						</form>
+						<form asp-controller="User" asp-action="RegisterUser" method="post">
+							<div class="sign-up-htm">
+								<div class="group">
+									<input asp-for="@registerModel.UserName" placeholder="User name" id="user" type="text" class="input">
+								</div>
+								<span class="text-danger" asp-validation-for="@registerModel.UserName"></span>
+								<div class="group mt-2">
+									<input asp-for="@registerModel.Password" placeholder="Password" id="pass" type="password" class="input" data-type="password">
+								</div>
+									<span class="text-danger" asp-validation-for="@registerModel.Password"></span>
+								<div class="group mt-2">
+									<input asp-for="@registerModel.ConfirmPassword" placeholder="Retype password" id="pass" type="password" class="input" data-type="password">
+								</div>
+								<span class="text-danger" asp-validation-for="@registerModel.ConfirmPassword"></span>
+								<div class="group mt-2">
+									<input asp-for="@registerModel.Email" placeholder="Email" id="pass" type="email" class="input">
+								</div>
+								<span class="text-danger" asp-validation-for="@registerModel.Email"></span>
+								<div class="group mt-2">
+									<input type="submit" class="button" value="Sign up">
+								</div>
+								<div class="hr"></div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+
+</div>
+	<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family:farnaz">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Forgot Password</h5>
+				</div>
+				<div class="modal-body">
+					<form asp-controller="User" asp-action="ForgotPassword" method="post" class="p-5 border border-2 border-secondary shadow" enctype="multipart/form-data" id="myForm">
+						<div class="container">
+							<div class="row justify-content-center">
+								<div class="col-sm-10 mt-3">
+									<div class="input-group">
+										<input asp-for="@forgotPasswordViewModel.Email" type="email" class="form-control text-center" placeholder="Email" />
+									</div>
+									<span asp-validation-for="@forgotPasswordViewModel.Email" class="text-danger"></span>
+								</div>
+							<br />
+							<div class="text-center mt-3">
+								<button id="button" type="submit" class="btn btn-warning p-2">Send email</button>
+							</div>
+						</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+@if (TempData["RegisterFailed"] is string x)
+{
+	@section CustomScript{
+		<script>
+		$(document).ready(function () {
+
+			$("#tab-2").prop("checked", true);
+			$("#tab-1").prop("checked", false);
+		});
+		</script>
+	}
+}
+@section Scripts{
+	
+		<partial name="_ValidationScriptsPartial" />
+}
